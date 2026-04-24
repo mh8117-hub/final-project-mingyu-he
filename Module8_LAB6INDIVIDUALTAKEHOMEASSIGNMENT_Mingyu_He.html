@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Module 8 LAB 6  ·  INDIVIDUAL TAKE-HOME ASSIGNMENT Report</title>
+<style>
+  body{font-family:Arial,sans-serif;color:#1F2937;margin:0;padding:0;}
+  @media print{body{font-size:11pt;} @page{margin:0.75in;}}
+</style>
+</head>
+<body>
+<div style="background:#0F4C81;color:#fff;padding:32px 40px;margin-bottom:0;">
+  <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:#C4B5E8;text-transform:uppercase;margin-bottom:8px;">MODULE 8  ·  LAB 6  ·  INDIVIDUAL TAKE-HOME ASSIGNMENT</div>
+  <div style="font-size:26px;font-weight:700;margin-bottom:6px;">Customer Support with Generative AI</div>
+  <div style="font-size:13px;color:#A78BFA;">Foundations of Business Informatics  ·  MASY1-GC 2400  ·  NYU School of Professional Studies  ·  Spring 2026</div>
+  <div style="font-size:12px;color:#C4B5E8;margin-top:6px;">Report generated: April 3, 2026</div>
+</div>
+<div style="padding:32px 40px;">
+  <table style="width:100%;border-collapse:collapse;margin-bottom:28px;background:#F9FAFB;border-radius:10px;overflow:hidden;border:1px solid #E5E7EB;">
+    <tr><td style="font-weight:700;color:#57068c;padding:6px 12px;width:160px;white-space:nowrap;">Student Name</td>
+     <td style="padding:6px 12px;color:#1F2937;">Mingyu He</td></tr><tr><td style="font-weight:700;color:#57068c;padding:6px 12px;width:160px;white-space:nowrap;">Team Number</td>
+     <td style="padding:6px 12px;color:#1F2937;">Team 1</td></tr><tr><td style="font-weight:700;color:#57068c;padding:6px 12px;width:160px;white-space:nowrap;">Date Submitted</td>
+     <td style="padding:6px 12px;color:#1F2937;">April 3rd, 2026</td></tr>
+  </table>
+  
+      <div style="margin-bottom:28px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;page-break-inside:avoid;">
+        <div style="background:#57068c15;border-left:5px solid #57068c;padding:16px 20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#57068c;margin-bottom:4px;">PART 1  ·  30 min</div>
+          <div style="font-size:16px;font-weight:700;color:#1F2937;">Build Your Full Intent Taxonomy</div>
+        </div>
+        <div style="padding:4px 20px 4px;">
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#57068c;font-weight:700;">1.</span> REGISTRATION CATEGORY (min. 4 intents) — Intent name, one-line description, and one sample student utterance for each:
+          </div>
+          <div style="background:#57068c08;border-left:3px solid #57068c;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">Registration Blocker Check — Identify the main reason the student cannot register for a class or term.<br/>Sample utterance: “Why can’t I register right now?”<br/>Hold Status Check — Check whether an active hold is blocking registration and show the hold owner.<br/>Sample utterance: “Do I have a hold on my account?”<br/>Hold Resolution Guidance — Explain what the student must do next to clear a hold.<br/>Sample utterance: “How do I remove this registration hold?”<br/>Prerequisite / Eligibility Check — Verify whether the student meets course prerequisites, co-requisites, or program rules.<br/>Sample utterance: “Do I meet the prereq for this class?”<br/>Course Availability / Waitlist Check—Show whether a section is open, closed, or waitlisted.<br/>Sample utterance: “Is this class full, or can I still enroll?”<br/>Override / Permission Request — Help the student start the correct exception request.<br/>Sample utterance: “Can I request permission to get into this class?”<br/>Schedule Conflict Check — Detect time conflicts or overload issues across selected classes.<br/>Sample utterance: “Do these two classes conflict with each other?”<br/>Registration Confirmation — Confirm whether registration was completed successfully.<br/>Sample utterance: “Did my registration go through?”</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#57068c;font-weight:700;">2.</span> FINANCIAL CATEGORY (min. 3 intents) — Intent name, description, and one sample student utterance:
+          </div>
+          <div style="background:#57068c08;border-left:3px solid #57068c;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">Account Balance Review — Show current balance, charges, and unpaid items.<br/>Sample utterance: “What do I still owe?”<br/>Financial Hold Check — Verify whether a bursar-related hold is blocking registration.<br/>Sample utterance: “Is a financial hold stopping me from registering?”<br/>Financial Aid Status Check — Show current aid status, pending items, or missing documents.<br/>Sample utterance: “Has my financial aid been applied yet?”<br/>Payment Deadline Lookup — Show tuition/payment due dates tied to enrollment risk.<br/>Sample utterance: “When do I need to pay to avoid getting blocked?”</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#57068c;font-weight:700;">3.</span> ADVISING CATEGORY (min. 4 intents) — Intent name, description, and one sample student utterance:
+          </div>
+          <div style="background:#57068c08;border-left:3px solid #57068c;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">Degree Audit Lookup — Show remaining requirements for the student’s program.<br/>Sample utterance: “What classes do I still need to graduate?”<br/>Next-Term Course Planning — Suggest what the student should take next based on progress and requirements.<br/>Sample utterance: “What should I take next semester?”<br/>Graduation Progress Check — Tell the student whether they are on track for expected graduation.<br/>Sample utterance: “Am I on track to graduate on time?”<br/>Milestone Progress Check — Check missing or delayed milestones in the student’s program.<br/>Sample utterance: “Am I behind on any program milestones?”<br/>Academic Risk Check — Show whether the student is at risk based on progress, GPA, or registration behavior.<br/>Sample utterance: “Am I considered at risk right now?”<br/>Advisor Contact/Appointment—Help the student contact or schedule with an advisor.<br/>Sample utterance: “How do I book a meeting with my advisor?”</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#57068c;font-weight:700;">4.</span> GENERAL & NAVIGATION (min. 2 intents) — Intent name, description, sample utterance:
+          </div>
+          <div style="background:#57068c08;border-left:3px solid #57068c;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">Find Degree Audit Page—Help the student locate the right feature in Albert.<br/>Sample utterance: “Where do I find my degree audit?”<br/>Find Registration Tools—Help the student locate course search, enrollment, or waitlist tools.<br/>Sample utterance: “Where do I go to add classes?”<br/>Find Important Dates—Direct the student to deadlines and calendar pages.<br/>Sample utterance: “Where can I see the registration deadline?”</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#57068c;font-weight:700;">5.</span> EDGE CASES (min. 2 intents) — Sensitive or ambiguous intents requiring special handling. Describe each and why it is an edge case:
+          </div>
+          <div style="background:#57068c08;border-left:3px solid #57068c;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">Urgent Deadline Risk—The student faces an immediate deadline, and the issue could cause loss of registration, aid, or graduation progress.<br/>Why it is an edge case: It is high-stakes, time-sensitive, and may require immediate human escalation.<br/>Sample utterance: “My registration closes tonight, and I still have a hold." What do I do?”<br/>Multi-Intent / Ambiguous Problem—Student mixes registration, advising, and financial issues in one message.<br/>Why it is an edge case: The bot must identify the real blocker first instead of answering only one part.<br/>Sample utterance: “I can’t register, and I’m not sure if it’s because of aid, a hold, or missing prereqs.”<br/>FERPA / Sensitive Record Request—Student requests protected records, notes, or information requiring identity verification and role-based access.<br/>Why it is an edge case: The system must verify identity and apply FERPA rules before disclosing anything.<br/>Sample utterance: “Can you show me all the notes written about me by my advisor?”</div>
+        </div>
+      </div>
+      </div>
+    
+      <div style="margin-bottom:28px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;page-break-inside:avoid;">
+        <div style="background:#1D4ED815;border-left:5px solid #1D4ED8;padding:16px 20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1D4ED8;margin-bottom:4px;">PART 2  ·  40 min</div>
+          <div style="font-size:16px;font-weight:700;color:#1F2937;">Design Two Complete Conversation Flows</div>
+        </div>
+        <div style="padding:4px 20px 4px;">
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#1D4ED8;font-weight:700;">1.</span> DIALOGUE FLOW 1 — State the intent name. Write the complete conversation with at least 6 turns, including happy path AND one failure or escalation branch:
+          </div>
+          <div style="background:#1D4ED808;border-left:3px solid #1D4ED8;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">DIALOGUE FLOW 1 — Intent Name: Registration Blocker Check <br/>   <br/>Turn 1<br/>Student says: “Why can’t I register for this class?”<br/>Bot responds: “I can help check that. Please tell me the course code and section, or paste the exact error message you see.”<br/>System does: Captures course identifier and prepares blocker check.<br/><br/>Turn 2<br/>Student says: “It’s INFO-GA 1001 section 001.”<br/>Bot responds: “Thanks. Before I look at your record, please confirm: ‘Yes, check my account.’”<br/>System does: Requests explicit confirmation before accessing FERPA-protected student data.<br/><br/>Turn 3<br/>Student says: “Yes, check my account.”<br/>Bot responds: “I’m checking your registration status now.”<br/>System does: Queries registration records, student holds, prerequisite eligibility, conflict rules, and enrollment attempt logs.<br/><br/>Turn 4<br/>Bot responds: “I found the main blocker: you have an active financial hold. Your prerequisite status is okay, and the class is still open.”<br/>System does: Returns primary blocker plus supporting facts.<br/><br/>Turn 5<br/>Student says: “What should I do next?”<br/>Bot responds: “This hold is owned by Bursar. Your next step is to review your balance and payment instructions. I can take you to the balance page or connect you to Bursar support.”<br/>System does: Offers safe next actions without making account changes.<br/><br/>Turn 6<br/>Student says: “Take me to the balance page.”<br/>Bot responds: “Done. I’ve opened the billing page and highlighted the active hold.”<br/>System does: Redirects to bursar/balance workflow.<br/><br/>Escalation / failure branch<br/>If the system detects multiple possible blockers or unclear data:<br/>Bot responds: “I found more than one possible issue, and I don’t want to guess. I’m creating a support case with your course, attempted action, and blocker summary so an advisor or registrar staff member can review it.”<br/>System does: Creates structured case card with student ID, course, timestamp, detected blockers, and transcript for human follow-up.<br/><br/>This flow reflects the documented registrar workflow of identifying the “real blocker” rather than assuming every request is a capacity issue.</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#1D4ED8;font-weight:700;">2.</span> DIALOGUE FLOW 2 — State the intent name. Write the complete conversation with at least 6 turns, including happy path AND one failure or escalation branch:
+          </div>
+          <div style="background:#1D4ED808;border-left:3px solid #1D4ED8;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">DIALOGUE FLOW 2 — Intent Name: Degree Audit / Remaining Requirements<br/><br/>Turn 1<br/>Student says, "What classes do I still need to graduate?”<br/>The bot responds, "I can check your degree audit and remaining requirements." Please confirm: ‘Yes, check my degree progress.’”<br/>The system does: requests confirmation before opening protected academic data.<br/><br/>Turn 2<br/>The student says, "Yes, check my degree progress.”<br/>Bot responds: “I’m reviewing your degree audit, completed credits, and milestone progress now.”<br/>The system does queries for degree audits, program requirements, completed/in-progress courses, and milestone tables.<br/><br/>Turn 3<br/>Bot responds, "You have 4 remaining requirements: 2 core courses, 1 elective, and your capstone milestone." You are currently slightly behind expected milestone pace for this term.”<br/>System does: Summarizes remaining items in plain language.<br/><br/>Turn 4<br/>The student says, "Am I still on track to graduate on time?”<br/>Bot responds: “At the moment, you are at moderate risk of delay because your capstone milestone is overdue and you are not yet registered for next term.”<br/>System does: Uses audit + milestone + registration signals.<br/><br/>Turn 5<br/>The student says, "What should I take next semester?”<br/>Bot responds, "Your best next schedule is Core A, Core B, and one elective that fits your program track." I also recommend meeting your advisor because your delayed milestone may affect timing.”<br/>System does: Generates next-term planning suggestion.<br/><br/>Turn 6<br/>The student says, "Can you connect me to my advisor?”<br/>Bot responds, "Yes." I can open advisor scheduling or send your advisor a summary of today’s issue.”<br/>System does: Routes to advising appointment/outreach workflow.<br/><br/>Escalation / failure branch<br/>If degree rules, substitutions, transfer credits, or exceptions are unresolved:<br/>Bot responds, "Your audit includes an exception or unresolved requirement that needs advisor review. I’m escalating this to advising with your audit summary, outstanding items, and milestone status.”<br/>System does: Sends structured handoff to advisor queue.<br/><br/>This flow matches the advisor files, emphasizing degree progress, milestones, next-term registration, and intervention when a student is off track.</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#1D4ED8;font-weight:700;">3.</span> What confirmation strategy does your bot use before taking any action on a student's account? Write the exact confirmation message template:
+          </div>
+          <div style="background:#1D4ED808;border-left:3px solid #1D4ED8;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">Exact confirmation message template:<br/>“Before I access or act on your NYU record, please confirm that you want me to use your Albert account information for this request. Reply: ‘Yes, check my account.’ If you do not want that, I can still give general guidance without opening your record.”<br/><br/>This confirmation approach is consistent with FERPA-based access logic and the workshop requirement that role-based access be reflected clearly.</div>
+        </div>
+      </div>
+      </div>
+    
+      <div style="margin-bottom:28px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;page-break-inside:avoid;">
+        <div style="background:#C2410C15;border-left:5px solid #C2410C;padding:16px 20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C2410C;margin-bottom:4px;">PART 3  ·  20 min</div>
+          <div style="font-size:16px;font-weight:700;color:#1F2937;">Specify Your RAG Knowledge Base</div>
+        </div>
+        <div style="padding:4px 20px 4px;">
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#C2410C;font-weight:700;">1.</span> List all RAG data sources. For EACH, specify: source name · data contained · freshness (real-time/nightly/weekly) · FERPA-protected (yes/no) · what queries it enables the bot to answer:
+          </div>
+          <div style="background:#C2410C08;border-left:3px solid #C2410C;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">List all RAG data sources<br/>student_master—student identity, program, term context—freshness: real-time/daily—FERPA: yes—enables identity-aware advising, account lookup, routing.<br/>registration_records—enrollment status, next-term registration, attempted enrollment outcomes—freshness: hourly/real-time—FERPA: yes—enables "Am I registered?" blocker checks, registration confirmation.<br/>student_holds—active holds, hold type, hold owner, status—freshness: daily/real-time where possible—FERPA: yes—enables hold detection and resolution guidance.<br/>degree_audit_requirements—required courses, sequencing, prerequisite logic, completion rules—freshness: nightly/term-based—FERPA: partially protected when joined to a student—enables remaining requirements, graduation check, eligibility logic.<br/>program_requirements—expected milestone pacing and program rules—freshness: termly/nightly—FERPA: no at source, yes when student-linked—enables milestone and off-track logic.<br/>degree_milestones / student_progress—milestone completion and overdue status—freshness: monthly/nightly—FERPA: yes—enables milestone progress and time-to-degree answers.<br/>academic_records / student_academic_status—GPA, standing, completed credits, probation-related context—freshness: termly/nightly—FERPA: yes—enables academic risk and graduation-readiness answers.<br/>advisor_assignments—advisor-to-student mapping—freshness: daily—FERPA: yes—enables “who is my advisor?” and advisor routing.<br/>student_interactions/advising_cases/advisor_tasks/student_requests—documented outreach, cases, open advising tasks—freshness: real-time/daily—FERPA: yes—enables human handoff context and case continuity.<br/>term_calendar—registration windows and deadlines—freshness: termly—FERPA: no—enables deadline lookup and urgency checks.<br/>course_catalog/course_offerings/class_sections—course metadata, section status, caps, modality, instructor—freshness: real-time/hourly—FERPA: no—enables course search, availability, waitlist, and schedule planning.<br/>waitlist_entries/enrollments/enrollment_attempts_log—waitlist counts, failed attempts, enrollment pressure—freshness: real-time/15-minute during peaks—FERPA: yes when student-level, operational when aggregate—enables seat pressure and blocker diagnosis.<br/>Bursar/account balance source—charges, balances, payment holds—freshness: daily/real-time depending on integration—FERPA: yes—enables financial hold and balance questions.<br/>Financial Aid status source—aid posted, pending, missing items—freshness: daily—FERPA: yes—enables aid status and aid-related blocker questions.<br/>LMS / Brightspace sources such as lms_grade_item, lms_grade, lms_submission, and lms_grade_release—freshness: near-real-time to hourly—FERPA: yes—enable answers where grading delays or hidden grades affect standing, prerequisites, or financial aid.<br/>IAM—authentication and role verification—freshness: real-time—FERPA: security-controlled—enables identity verification and role-based access checks.<br/>Help Desk/case system—ticket IDs, case status, escalation history—freshness: real-time—FERPA: yes when linked to a student—enables fallback routing and case tracking.</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#C2410C;font-weight:700;">2.</span> What happens when a required RAG source is unavailable or stale? Describe your fallback behavior in full detail:
+          </div>
+          <div style="background:#C2410C08;border-left:3px solid #C2410C;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">If a required source is unavailable, stale, or returns conflicting data, the bot should not guess. It should:<br/><br/>Detect the missing source and classify the answer as incomplete.<br/>Suppress any action-oriented or high-risk recommendation.<br/>Tell the student which source could not be verified.<br/>Provide only safe general guidance if possible.<br/>Escalate to the correct human queue when the issue affects registration, financial standing, aid, or graduation.<br/>Pass a structured handoff packet including student ID, requested intent, unavailable source, timestamp, and partial findings already confirmed from other systems.<br/>Mark the case as “source unavailable / data freshness risk” for audit and follow-up.<br/><br/>Example fallback behavior:<br/>“If registration_records is available but student_holds is stale, the bot may say, 'I can confirm you are not yet registered, but I cannot verify your active hold status right now. I don’t want to give you the wrong next step, so I’m routing this to advising support with your current registration context attached.’”</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#C2410C;font-weight:700;">3.</span> How does the bot show the student which source its answer came from? Write an example response that includes source attribution:
+          </div>
+          <div style="background:#C2410C08;border-left:3px solid #C2410C;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">Example response with source attribution:<br/>“You have one active registration hold owned by Bursar, and you are not yet enrolled for next term.<br/>Source: Albert student_holds (last updated today) + registration_records (hourly refresh).<br/>I also checked your term_calendar record, and the registration deadline is this Friday at 5:00 PM.”<br/><br/>This fits the workshop requirement that factual answers be grounded in verified Albert data sources with freshness and FERPA handling made explicit.</div>
+        </div>
+      </div>
+      </div>
+    
+      <div style="margin-bottom:28px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #E5E7EB;page-break-inside:avoid;">
+        <div style="background:#16653415;border-left:5px solid #166534;padding:16px 20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#166534;margin-bottom:4px;">PART 4  ·  30 min</div>
+          <div style="font-size:16px;font-weight:700;color:#1F2937;">Define Escalation Matrix & Success Metrics</div>
+        </div>
+        <div style="padding:4px 20px 4px;">
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#166534;font-weight:700;">1.</span> ESCALATION MATRIX — At least 6 rules. For each: trigger condition · who receives it · what context is passed · human response SLA:
+          </div>
+          <div style="background:#16653408;border-left:3px solid #166534;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">1. ESCALATION MATRIX<br/>Trigger: Financial hold blocks registration, and payment action is required.<br/>Who receives it: Bursar support.<br/>Context passed: student ID, active hold type, balance page status, course/term affected, and chat transcript.<br/>Human SLA: within 1 business day; same day during registration peak.<br/>Trigger: Degree audit contains substitutions, transfer credits, exceptions, or unclear remaining requirements.<br/>Who receives it: Academic advisor.<br/>Context passed: degree audit snapshot, unresolved requirement, milestone status, next-term registration status, and transcript.<br/>Human SLA: within 1 business day.<br/>Trigger: The real blocker is a capacity, waitlist, override, or permission issue that needs staff review.<br/>Who receives it: Registrar staff.<br/>Context passed: course section, attempted action, waitlist/capacity info, prerequisite check result, student urgency flags, transcript.<br/>Human SLA: within 4 business hours during registration periods.<br/>Trigger: Student reports grading delay, hidden grade, or LMS issue affecting prerequisite clearance, graduation, or aid.<br/>Who receives it: Instructor/academic department/LMS support depending on the rule.<br/>Context passed: course, section, grade item, student claim, current LMS status, downstream impact.<br/>Human SLA: within 1 business day; urgent if deadline-related.<br/>Trigger: Bot cannot verify identity, FERPA status, or role permissions.<br/>Who receives it: Help Desk/identity support.<br/>Context passed: failed authentication type, timestamp, requested action, limited transcript.<br/>Human SLA: within 4 business hours.<br/>Trigger: Multiple blockers detected or data sources conflict, so the bot cannot determine the correct next step safely.<br/>Who receives it: Triage queue, then routed to advisor or registrar.<br/>Context passed: all detected blockers, unavailable or stale sources, confidence flags, transcript.<br/>Human SLA: within 4 business hours during peak periods.<br/>Trigger: Student expresses urgent harm risk to registration, aid, visa/full-time status, or graduation deadline within 24 hours.<br/>Who receives it: Priority advising / registrar emergency queue.<br/>Context passed: deadline, affected course/term, detected blockers, student message, transcript.<br/>Human SLA: same day, preferably within 1 hour in active registration windows.<br/><br/>These rules are consistent with the documented workflows showing cross-department routing, urgency, approval delays, and the need for fairness/compliance-aware handoff.</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#166534;font-weight:700;">2.</span> SUCCESS METRICS — Your 6-month targets for: Containment Rate · CSAT Score · First Response Time · Escalation Accuracy · Resolution Rate · Fallback Rate:
+          </div>
+          <div style="background:#16653408;border-left:3px solid #166534;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">2. SUCCESS METRICS — 6-month targets<br/>Containment Rate: 65%+ of student conversations resolved without human handoff<br/>CSAT Score: 4.5 / 5 or higher<br/>First Response Time: under 5 seconds for the chatbot's first reply<br/>Escalation Accuracy: 90%+ of escalated cases routed to the correct team on first pass<br/>Resolution Rate: 85%+ of student issues either resolved by bot or successfully handed to the right human queue without re-triage<br/>Fallback Rate: under 10% of conversations ending in “I can’t answer because data is unavailable”<br/><br/>These targets are reasonable because your files repeatedly set ambitious but operationally realistic standards: dashboard load under 2–3 seconds, alert delivery under 5 minutes, high adoption, high uptime, and improved early intervention/reduced blocked students.</div>
+        </div>
+      
+        <div style="margin-top:18px;padding:0 0 18px 0;border-bottom:1px solid #F3F4F6;">
+          <div style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;line-height:1.5;">
+            <span style="color:#166534;font-weight:700;">3.</span> Which single metric, if it dropped below target, would signal a fundamental design problem — and what would you investigate first?
+          </div>
+          <div style="background:#16653408;border-left:3px solid #166534;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#1F2937;line-height:1.6;">Escalation accuracy would be the most important single warning metric.<br/><br/>If escalation accuracy drops below target, it likely means the bot is misunderstanding intent, identifying the wrong blocker, or mapping cases to the wrong human team. That is a fundamental design problem because the whole system depends on correct routing across advising, registrar, bursar, financial aid, LMS, and help desk. The first things I would investigate are:<br/><br/>intent classification errors,<br/>blocker-detection logic,<br/>missing or stale source data,<br/>confusing multi-intent student messages, and<br/>whether the escalation rules are too broad or too narrow.<br/><br/>That focus directly matches the registrar workflow, finding that many “full class” complaints are actually caused by other blockers, and the AI opportunity file that stresses correct intake triage as a major value point.</div>
+        </div>
+      </div>
+      </div>
+    
+  <div style="text-align:center;padding:20px 0;font-size:11px;color:#9CA3AF;border-top:1px solid #E5E7EB;margin-top:32px;">
+    Andres Fortino, Ph.D.  ·  New York University, School of Professional Studies  ·  Spring 2026
+  </div>
+</div>
+</body>
+</html>

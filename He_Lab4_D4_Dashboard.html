@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════
+     NYU PROFESSOR DASHBOARD MOCKUP (ONE-PAGE / 5 KPIs MAX)
+     ALERT BANNER REMOVED PER REQUEST
+     Session 6: Dashboard Design & UX
+     Foundations of Business Informatics — Dr. Andres Fortino
+     To view: save as dashboard.html and open in Chrome or Safari
+     ═══════════════════════════════════════════════════════════ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYU Professor Dashboard — One Page</title>
+
+  <!-- Inter font (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --nyu-purple:#57068C;
+      --nyu-dark:#330662;
+      --white:#FFFFFF;
+
+      --green:#2E7D32; --green-bg:#E8F5E9;
+      --yellow:#F57F17; --yellow-bg:#FFF8E1;
+      --red:#C62828; --red-bg:#FFEBEE;
+      --gray:#546E7A; --gray-bg:#F5F5F5;
+
+      --bg:#F8F5FC;
+      --text:#333333;
+
+      --radius:12px;
+      --shadow:0 2px 8px rgba(0,0,0,0.08);
+      --shadowHover:0 8px 18px rgba(0,0,0,0.12);
+      --hoverY:-2px;
+      --speed:0.2s;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:'Inter', sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* =========================
+       SECTION 1 — HEADER BAR
+       ========================= */
+    .topbar{
+      background:linear-gradient(135deg, var(--nyu-purple), var(--nyu-dark));
+      color:var(--white);
+      padding:14px 18px 0 18px;
+      position:sticky;
+      top:0;
+      z-index:10;
+      box-shadow:0 6px 16px rgba(0,0,0,0.10);
+    }
+    .topbar-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding-bottom:12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:240px;
+    }
+    .torch{
+      width:32px;
+      height:32px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.16);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      letter-spacing:0.5px;
+    }
+    .brand-title{
+      font-weight:800;
+      font-size:16px;
+      opacity:0.98;
+      white-space:nowrap;
+    }
+    .welcome{
+      text-align:center;
+      flex:1;
+      font-weight:600;
+      font-size:14px;
+      opacity:0.96;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .rightmeta{
+      min-width:240px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:10px;
+    }
+    .pill{
+      border-radius:20px;
+      padding:6px 10px;
+      font-size:12px;
+      font-weight:600;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.22);
+      white-space:nowrap;
+    }
+    .bell{
+      width:34px; height:34px;
+      border-radius:12px;
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.22);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      transition:all var(--speed) ease;
+      position:relative;
+    }
+    .bell:hover{ transform:translateY(-1px); background:rgba(255,255,255,0.24); }
+    .bell svg{ width:18px; height:18px; fill:#fff; opacity:0.95; }
+    .notif-dot{
+      position:absolute;
+      top:7px; right:8px;
+      width:9px; height:9px;
+      border-radius:50%;
+      background:var(--red);
+      box-shadow:0 0 0 2px rgba(255,255,255,0.55);
+    }
+    .tabs{
+      display:flex;
+      gap:6px;
+      padding:10px 0 14px 0;
+      border-top:1px solid rgba(255,255,255,0.18);
+      overflow:auto;
+    }
+    .tab{
+      color:rgba(255,255,255,0.86);
+      font-weight:600;
+      font-size:13px;
+      padding:10px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:all var(--speed) ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .tab:hover{ background:rgba(255,255,255,0.12); }
+    .tab.active{
+      background:rgba(255,255,255,0.18);
+      color:var(--white);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,0.20);
+    }
+
+    /* =========================
+       PAGE LAYOUT (ONE-PAGE)
+       ========================= */
+    .container{
+      max-width:1200px;
+      margin:14px auto 18px auto;
+      padding:0 18px 18px 18px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      transition:all var(--speed) ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:hover{
+      transform:translateY(var(--hoverY));
+      box-shadow:var(--shadowHover);
+    }
+
+    .label{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
+      color:var(--gray);
+      font-weight:700;
+    }
+    .kpi-title{
+      margin:8px 0 0 0;
+      font-size:16px;
+      font-weight:800;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      color:var(--nyu-purple);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .subtext{
+      font-size:14px;
+      color:#444;
+      margin-top:6px;
+      line-height:1.35;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:700;
+      border:1px solid rgba(0,0,0,0.06);
+      background:var(--gray-bg);
+      color:var(--gray);
+      white-space:nowrap;
+    }
+    .chip.green{ color:var(--green); background:var(--green-bg); border-color:rgba(46,125,50,0.18); }
+    .chip.yellow{ color:var(--yellow); background:var(--yellow-bg); border-color:rgba(245,127,23,0.18); }
+    .chip.red{ color:var(--red); background:var(--red-bg); border-color:rgba(198,40,40,0.18); }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border:none;
+      cursor:pointer;
+      border-radius:12px;
+      padding:10px 12px;
+      font-weight:700;
+      transition:all var(--speed) ease;
+      font-size:13px;
+      text-decoration:none;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .cta.primary{
+      background:var(--nyu-purple);
+      color:#fff;
+      box-shadow:0 10px 20px rgba(87,6,140,0.18);
+    }
+    .cta.primary:hover{ background:var(--nyu-dark); }
+    .cta.secondary{
+      background:#fff;
+      color:var(--nyu-purple);
+      border:1px solid rgba(87,6,140,0.25);
+    }
+    .cta.secondary:hover{
+      background:rgba(87,6,140,0.07);
+      border-color:rgba(87,6,140,0.40);
+    }
+    .link{
+      color:var(--nyu-purple);
+      font-weight:700;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .link:hover{ text-decoration:underline; }
+
+    .left-accent{ border-left:4px solid var(--nyu-purple); }
+
+    /* =========================
+       ONE-PAGE GRID STRUCTURE
+       Row 1: Hero (2fr) + Deadlines (1fr)
+       Row 2: Risk (1fr) + Compliance (1fr) + Timeliness (1fr)
+       ========================= */
+    .grid-row1{
+      display:grid;
+      grid-template-columns: 2fr 1fr;
+      gap:12px;
+      align-items:stretch;
+    }
+    .grid-row2{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+      align-items:stretch;
+    }
+    @media (max-width: 1020px){
+      .grid-row1{ grid-template-columns: 1fr; }
+      .grid-row2{ grid-template-columns: 1fr; }
+      .welcome{ display:none; }
+      .brand, .rightmeta{ min-width:auto; }
+    }
+
+    /* =========================
+       HERO KPI — Outstanding Grading Queue
+       ========================= */
+    .pad{ padding:16px; }
+    .hero{
+      display:grid;
+      grid-template-columns: 170px 1fr;
+      gap:14px;
+      align-items:center;
+      min-height:210px;
+      margin-top:10px;
+    }
+    @media (max-width: 640px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+    .ring{
+      width:170px; height:170px;
+      position:relative;
+      margin:auto;
+    }
+    .ring .center{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:12px;
+    }
+    .hero-value{
+      font-size:48px;
+      font-weight:800;
+      color:var(--nyu-purple);
+      line-height:1;
+    }
+    .hero-unit{
+      font-size:12px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--gray);
+      margin-top:6px;
+      font-weight:700;
+    }
+
+    .mini-bars{
+      margin-top:8px;
+      padding:10px 12px;
+      background:#fff;
+      border-radius:12px;
+      border:1px solid rgba(0,0,0,0.06);
+    }
+    .bar-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .bar-row:last-child{ margin-bottom:0; }
+    .bar-label{
+      font-size:12px;
+      font-weight:800;
+      color:#444;
+      white-space:nowrap;
+      min-width:54px;
+    }
+    .bar-track{
+      flex:1;
+      height:10px;
+      border-radius:999px;
+      background:#EFEAF7;
+      overflow:hidden;
+    }
+    .bar-fill{
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      transition:width 0.3s ease;
+    }
+    .bar-val{
+      font-size:12px;
+      font-weight:800;
+      color:var(--gray);
+      min-width:30px;
+      text-align:right;
+    }
+
+    .pulse-dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background:var(--red);
+      box-shadow:0 0 0 rgba(198,40,40,0.55);
+      animation:pulse 1.4s infinite;
+    }
+    @keyframes pulse{
+      0%{ box-shadow:0 0 0 0 rgba(198,40,40,0.45); }
+      70%{ box-shadow:0 0 0 10px rgba(198,40,40,0.0); }
+      100%{ box-shadow:0 0 0 0 rgba(198,40,40,0.0); }
+    }
+
+    /* =========================
+       KPI CARDS (Row 2)
+       ========================= */
+    .kpi-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .kpi-name{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.14em;
+      font-weight:900;
+      color:var(--nyu-purple);
+    }
+    .kpi-value{
+      font-size:32px;
+      font-weight:800;
+      color:var(--nyu-dark);
+      line-height:1.1;
+    }
+    .kpi-desc{
+      margin-top:8px;
+      font-size:14px;
+      color:#333;
+      line-height:1.35;
+    }
+    .trend{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:12px;
+      font-weight:900;
+      padding:6px 10px;
+      border-radius:20px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:var(--gray-bg);
+      color:var(--gray);
+      white-space:nowrap;
+    }
+    .trend.up{ color:var(--green); background:var(--green-bg); border-color:rgba(46,125,50,0.18); }
+    .trend.down{ color:var(--red); background:var(--red-bg); border-color:rgba(198,40,40,0.18); }
+
+    .course-bars{
+      margin-top:10px;
+      display:grid;
+      gap:8px;
+    }
+    .course-row{
+      display:grid;
+      grid-template-columns: 1fr 120px;
+      gap:10px;
+      align-items:center;
+    }
+    .course-name{
+      font-size:13px;
+      font-weight:800;
+      color:#333;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .stack{
+      height:10px;
+      border-radius:999px;
+      overflow:hidden;
+      display:flex;
+      background:#EFEAF7;
+      border:1px solid rgba(0,0,0,0.04);
+    }
+    .seg{ height:100%; width:0%; transition:width 0.3s ease; }
+    .seg.red{ background:var(--red); }
+    .seg.yellow{ background:var(--yellow); }
+
+    .spark{
+      width:100%;
+      height:42px;
+      margin-top:10px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(87,6,140,0.08), rgba(87,6,140,0.02));
+      border:1px solid rgba(87,6,140,0.14);
+      overflow:hidden;
+      position:relative;
+    }
+    .spark svg{ position:absolute; inset:0; }
+
+    /* =========================
+       QUICK ACTIONS (compact)
+       ========================= */
+    .footer-actions{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:10px;
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      align-items:center;
+      justify-content:space-between;
+    }
+    .footer-actions .left{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =========================
+       SECTION 1 — HEADER BAR
+       ========================= -->
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="brand">
+        <div class="torch" aria-label="NYU torch logo placeholder">NYU</div>
+        <div class="brand-title">NYU Student Portal</div>
+      </div>
+
+      <div class="welcome">Welcome back, Prof. Maya Chen</div>
+
+      <div class="rightmeta">
+        <div class="pill">Spring 2026</div>
+        <div class="bell" title="Notifications">
+          <span class="notif-dot" aria-hidden="true"></span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22a2.5 2.5 0 0 0 2.45-2h-4.9A2.5 2.5 0 0 0 12 22zm7-6V11a7 7 0 1 0-14 0v5L3 18v1h18v-1l-2-2z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <nav class="tabs" aria-label="Primary navigation">
+      <div class="tab active">Dashboard</div>
+      <div class="tab">Courses</div>
+      <div class="tab">Finances</div>
+      <div class="tab">Registration</div>
+      <div class="tab">Advising</div>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- =========================
+         ROW 1 — HERO + DEADLINES
+         KPI 1 (HERO): Outstanding Grading Queue
+         KPI 2 (ESSENTIAL): Upcoming High-Stakes Deadlines
+         ========================= -->
+    <section class="grid-row1">
+
+      <!-- KPI 1 — HERO -->
+      <div class="card pad" id="heroCard">
+        <div class="label">PRIMARY KPI — HERO</div>
+        <div class="kpi-title" id="heroTitle">
+          <span class="pulse-dot" id="heroPulse" style="display:none;"></span>
+          Outstanding Grading Queue
+        </div>
+        <div class="subtext">Ungraded submissions across my active sections (triage by age and assessment weight).</div>
+
+        <div class="hero">
+          <div class="ring" aria-label="Queue urgency ring">
+            <svg width="170" height="170" viewBox="0 0 170 170">
+              <circle cx="85" cy="85" r="69" stroke="#EFEAF7" stroke-width="15" fill="none"></circle>
+              <circle id="ringStroke" cx="85" cy="85" r="69" stroke="#2E7D32" stroke-width="15" fill="none"
+                      stroke-linecap="round" transform="rotate(-90 85 85)"
+                      stroke-dasharray="0 434"></circle>
+            </svg>
+            <div class="center">
+              <div class="hero-value" id="heroValue">23</div>
+              <div class="hero-unit">items in queue</div>
+              <div style="margin-top:10px;">
+                <span class="chip red" id="oldestChip">Oldest: 16 days</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <span class="chip" id="refreshChip">Auto-refresh: every 5 min</span>
+              <span class="chip" id="turnaroundChip">Turnaround target: 14 days</span>
+              <span class="chip red" id="stateChip">Status: Urgent</span>
+            </div>
+
+            <div class="mini-bars" aria-label="Age bucket distribution">
+              <div class="label" style="font-size:11px; margin-bottom:8px;">Age buckets (days since submission)</div>
+
+              <div class="bar-row">
+                <div class="bar-label">0–2</div>
+                <div class="bar-track"><div class="bar-fill" id="b02"></div></div>
+                <div class="bar-val" id="v02">7</div>
+              </div>
+
+              <div class="bar-row">
+                <div class="bar-label">3–7</div>
+                <div class="bar-track"><div class="bar-fill" id="b37"></div></div>
+                <div class="bar-val" id="v37">9</div>
+              </div>
+
+              <div class="bar-row">
+                <div class="bar-label">8–14</div>
+                <div class="bar-track"><div class="bar-fill" id="b814"></div></div>
+                <div class="bar-val" id="v814">5</div>
+              </div>
+
+              <div class="bar-row">
+                <div class="bar-label">15+</div>
+                <div class="bar-track"><div class="bar-fill" id="b15"></div></div>
+                <div class="bar-val" id="v15">2</div>
+              </div>
+
+              <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span class="subtext" style="margin:0; font-size:13px;">
+                  Priority hint: <strong>2 items past turnaround target</strong>
+                </span>
+                <a class="link" href="javascript:void(0)" id="openQueueLink">Open grading queue →</a>
+              </div>
+            </div>
+
+            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="cta primary" href="javascript:void(0)" id="openQueueBtn">Open Grading Queue</a>
+              <a class="cta secondary" href="javascript:void(0)" id="sortWeightBtn">Sort by Highest Weight</a>
+              <a class="cta secondary" href="javascript:void(0)" id="refreshBtn">Refresh</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI 2 — Deadlines (persistent) -->
+      <div class="card pad left-accent" id="deadlinesCard">
+        <div class="label">ESSENTIAL — GUARDRAILS</div>
+        <div class="kpi-title" style="margin-bottom:2px;">Upcoming Deadlines</div>
+        <div class="subtext" style="margin-top:4px;">Instructor tasks (next 30 days), sorted by urgency.</div>
+
+        <div style="margin-top:10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <span class="chip red" id="nextDeadlineChip">Next: Midterm Progress Reports — 5 days</span>
+          <span class="chip" id="due7Chip">Due in 7 days: 2</span>
+        </div>
+
+        <div style="margin-top:12px; border:1px solid rgba(0,0,0,0.06); border-radius:12px; overflow:hidden;">
+          <div style="background:#FBFAFD; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+            <div class="label" style="font-size:11px;">Next 5 deadlines</div>
+            <a class="link" href="javascript:void(0)" id="goNextBtn">Go to next →</a>
+          </div>
+          <div id="deadlineList" style="padding:10px 12px; display:grid; gap:10px;">
+            <!-- JS inject -->
+          </div>
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="cta primary" href="javascript:void(0)" id="goTaskBtn">Go to Next Deadline Task</a>
+          <a class="cta secondary" href="javascript:void(0)" id="toggleEmailBtn">Email reminders: ON</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================
+         ROW 2 — 3 KPI cards
+         KPI 3: Students at Academic Risk (Essential)
+         KPI 4: Final Grade Submission Compliance (Essential)
+         KPI 5: Grading Timeliness Rate (Secondary)
+         ========================= -->
+    <section class="grid-row2">
+
+      <!-- KPI 3 — Risk -->
+      <div class="card pad left-accent" id="riskCard">
+        <div class="kpi-top">
+          <div>
+            <div class="kpi-name">Students at Academic Risk</div>
+            <div class="kpi-desc">Red-risk and caution counts across my active sections.</div>
+          </div>
+          <span class="trend up" id="riskTrend">↑ +1 vs last week</span>
+        </div>
+
+        <div style="margin-top:10px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <div class="label" style="font-size:11px;">At risk (red)</div>
+            <div class="kpi-value" id="riskRed" style="color:var(--yellow);">4</div>
+          </div>
+          <div>
+            <div class="label" style="font-size:11px;">Caution (yellow)</div>
+            <div class="kpi-value" id="riskYellow" style="color:var(--yellow);">9</div>
+          </div>
+          <div>
+            <div class="label" style="font-size:11px;">Status</div>
+            <div class="chip yellow" id="riskStateChip">Caution: review roster</div>
+          </div>
+        </div>
+
+        <div class="course-bars" id="riskByCourse"></div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="cta primary" href="javascript:void(0)" id="reviewRosterBtn">Review At-Risk Roster</a>
+          <a class="cta secondary" href="javascript:void(0)" id="sendOHBtn" style="display:none;">Send Office Hours Invite</a>
+        </div>
+      </div>
+
+      <!-- KPI 4 — Compliance -->
+      <div class="card pad left-accent" id="complianceCard">
+        <div class="kpi-top">
+          <div>
+            <div class="kpi-name">Final Grade Submission</div>
+            <div class="kpi-desc">Registrar deadline-aware compliance across my sections.</div>
+          </div>
+          <span class="trend down" id="compTrend">↓ -3% since yesterday</span>
+        </div>
+
+        <div style="margin-top:10px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div>
+            <div class="label" style="font-size:11px;">Submitted</div>
+            <div class="kpi-value" id="compPct" style="color:var(--red);">92.0%</div>
+          </div>
+          <div>
+            <div class="label" style="font-size:11px;">Deadline</div>
+            <div class="chip red" id="deadlineChip">Deadline in <span id="deadlineDays">3</span> days</div>
+          </div>
+          <div>
+            <div class="label" style="font-size:11px;">Status</div>
+            <div class="chip red" id="compStateChip">Urgent: missing grades</div>
+          </div>
+        </div>
+
+        <div style="margin-top:10px;">
+          <div class="label" style="font-size:11px;">Most impacted section</div>
+          <div style="margin-top:6px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+            <div style="font-weight:900;">INFO-UA 201 (Lecture)</div>
+            <span class="chip red" id="missingChip">5 missing</span>
+          </div>
+          <div class="subtext" style="margin-top:6px;">Auto-email reminders enabled during urgent state (deadline <7 days).</div>
+        </div>
+
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="cta primary" href="javascript:void(0)" id="enterGradesBtn">Enter Final Grades</a>
+          <a class="cta secondary" href="javascript:void(0)" id="viewMissingBtn">View Missing Students</a>
+        </div>
+      </div>
+
+      <!-- KPI 5 — Timeliness (Secondary, compact) -->
+      <div class="card pad left-accent" id="timelinessCard">
+        <div class="kpi-top" style="align-items:center;">
+          <div>
+            <div class="kpi-name">Grading Timeliness</div>
+            <div class="kpi-desc">Posted within turnaround time (weekly trend).</div>
+          </div>
+          <span class="chip yellow" id="timelinessState">Caution</span>
+        </div>
+
+        <div style="margin-top:10px;">
+          <div class="kpi-value" id="timelinessVal" style="color:var(--yellow);">78.0%</div>
+          <div class="subtext" style="margin-top:6px;">If trend declines, consider batching, rubric simplification, or TA support.</div>
+        </div>
+
+        <div class="spark" aria-label="Timeliness sparkline">
+          <svg viewBox="0 0 260 70" preserveAspectRatio="none" aria-hidden="true">
+            <path id="timelinessPath" d="" fill="none" stroke="rgba(87,6,140,0.85)" stroke-width="3" stroke-linecap="round"></path>
+          </svg>
+        </div>
+
+        <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+          <span class="chip yellow" id="downtrendChip">Downtrend</span>
+          <a class="link" href="javascript:void(0)" id="driverLink">See drivers →</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- =========================
+         QUICK ACTIONS (compact)
+         ========================= -->
+    <section class="footer-actions" aria-label="Quick actions">
+      <div class="left">
+        <a class="cta secondary" href="javascript:void(0)">Open Gradebook</a>
+        <a class="cta secondary" href="javascript:void(0)">Message Students</a>
+        <a class="cta secondary" href="javascript:void(0)">Schedule Office Hours</a>
+        <a class="cta secondary" href="javascript:void(0)">Verify Rosters</a>
+        <a class="cta secondary" href="javascript:void(0)">Check Deadlines</a>
+      </div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <span class="chip">System: the new NYU Student Information System</span>
+        <span class="chip" id="lastUpdatedChip">Last updated: —</span>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ===== Realistic sample data (aligned to your spec) =====
+    const data = {
+      // KPI 1 — Outstanding Grading Queue (HERO)
+      queue: {
+        total: 23,
+        buckets: { "0-2": 7, "3-7": 9, "8-14": 5, "15+": 2 },
+        oldestDays: 16,
+        turnaroundDays: 14,
+      },
+
+      // KPI 2 — Upcoming Deadlines (ESSENTIAL)
+      deadlines: [
+        { icon:"📝", task:"Midterm Progress Reports", scope:"INFO-UA 201 (Lecture)", dueDays:5, dueDate:"Mar 9" },
+        { icon:"✅", task:"Roster Verification", scope:"All sections", dueDays:9, dueDate:"Mar 13" },
+        { icon:"📊", task:"Early Alerts / Advising Referrals", scope:"Recitation 002", dueDays:12, dueDate:"Mar 16" },
+        { icon:"📌", task:"Incomplete Cutoff Review", scope:"Department policy", dueDays:18, dueDate:"Mar 22" },
+        { icon:"🧾", task:"Gradebook Export (audit)", scope:"All sections", dueDays:26, dueDate:"Mar 30" },
+      ],
+
+      // KPI 3 — Students at Academic Risk (ESSENTIAL)
+      risk: {
+        red: 4,
+        yellow: 9,
+        totalEnrolled: 128,
+        wowChangeRed: +1,
+        byCourse: [
+          { name: "INFO-UA 201 (Lecture)", red: 2, yellow: 5 },
+          { name: "Recitation 002", red: 1, yellow: 3 },
+          { name: "Recitation 003", red: 1, yellow: 1 },
+        ]
+      },
+
+      // KPI 4 — Final Grade Submission Compliance (ESSENTIAL)
+      compliance: {
+        pct: 92.0,
+        daysRemaining: 3,
+        mostImpacted: { section:"INFO-UA 201 (Lecture)", missing: 5 }
+      },
+
+      // KPI 5 — Grading Timeliness (SECONDARY)
+      timeliness: {
+        current: 78.0,
+        series: [86, 84, 83, 82, 80, 79, 78, 76],
+        downtrend: true
+      }
+    };
+
+    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+    const fmtPct = (n) => `${Number(n).toFixed(1)}%`;
+
+    function applyChip(el, color){
+      el.classList.remove("green","yellow","red");
+      el.classList.add(color);
+    }
+
+    function setLastUpdated(){
+      const d = new Date();
+      const hh = String(d.getHours()).padStart(2,'0');
+      const mm = String(d.getMinutes()).padStart(2,'0');
+      const month = d.toLocaleString(undefined, { month: "short" });
+      const day = d.getDate();
+      document.getElementById("lastUpdatedChip").textContent = `Last updated: ${month} ${day}, ${hh}:${mm}`;
+    }
+
+    // ===== KPI state logic (from your report thresholds) =====
+    function queueState(q){
+      if(q.total === 0 || q.oldestDays <= 7) return "green";
+      if(q.oldestDays >= 15 || q.oldestDays > q.turnaroundDays) return "red";
+      if(q.oldestDays >= 8 && q.oldestDays <= 14) return "yellow";
+      if(q.total > 20) return "yellow";
+      return "green";
+    }
+
+    function deadlinesState(deadlines){
+      const next = deadlines.reduce((min, d) => Math.min(min, d.dueDays), Infinity);
+      if(next < 7) return "red";
+      if(next <= 14) return "yellow";
+      return "green";
+    }
+
+    function riskState(r){
+      const redPct = (r.red / r.totalEnrolled) * 100;
+      if(r.red === 0) return "green";
+      if(r.red > 5 || redPct >= 10) return "red";
+      return "yellow";
+    }
+
+    function complianceState(c){
+      if(c.pct === 100 || c.mostImpacted.missing === 0) return "green";
+      if(c.daysRemaining < 7 && c.mostImpacted.missing > 0) return "red";
+      if(c.pct >= 90) return "yellow";
+      return "yellow";
+    }
+
+    function timelinessState(v){
+      if(v >= 85) return "green";
+      if(v >= 70) return "yellow";
+      return "red";
+    }
+
+    // ===== Render KPI 1 (Hero) =====
+    function renderHero(){
+      const q = data.queue;
+      const s = queueState(q);
+
+      document.getElementById("heroValue").textContent = q.total;
+      document.getElementById("oldestChip").textContent = `Oldest: ${q.oldestDays} days`;
+      document.getElementById("turnaroundChip").textContent = `Turnaround target: ${q.turnaroundDays} days`;
+
+      const stateChip = document.getElementById("stateChip");
+      stateChip.textContent = s === "red" ? "Status: Urgent" : (s === "yellow" ? "Status: Needs triage" : "Status: On track");
+      applyChip(stateChip, s);
+      applyChip(document.getElementById("oldestChip"), s);
+
+      document.getElementById("heroPulse").style.display = (s === "red") ? "inline-block" : "none";
+
+      // Ring shows urgency vs turnaround target
+      const r = 69;
+      const C = 2 * Math.PI * r; // ~434
+      const ratio = clamp((q.oldestDays / q.turnaroundDays) * 100, 0, 140);
+      const pct = clamp(ratio, 0, 100);
+      const fill = (pct/100) * C;
+      const ring = document.getElementById("ringStroke");
+      ring.setAttribute("stroke-dasharray", `${fill.toFixed(1)} ${(C-fill).toFixed(1)}`);
+      ring.setAttribute("stroke", s === "red" ? "var(--red)" : (s === "yellow" ? "var(--yellow)" : "var(--green)"));
+
+      // Mini bars
+      const total = q.total || 1;
+      const b = q.buckets;
+      const setBar = (fillId, valId, count, color)=>{
+        document.getElementById(valId).textContent = count;
+        document.getElementById(fillId).style.width = `${((count/total)*100).toFixed(1)}%`;
+        document.getElementById(fillId).style.background = color;
+      };
+      setBar("b02","v02", b["0-2"], "var(--green)");
+      setBar("b37","v37", b["3-7"], "rgba(46,125,50,0.55)");
+      setBar("b814","v814", b["8-14"], "var(--yellow)");
+      setBar("b15","v15", b["15+"], "var(--red)");
+
+      // Secondary CTA appears only on Yellow/Red
+      document.getElementById("sortWeightBtn").style.display = (s === "green") ? "none" : "inline-flex";
+    }
+
+    // ===== Render KPI 2 (Deadlines) =====
+    function renderDeadlines(){
+      const list = document.getElementById("deadlineList");
+      list.innerHTML = "";
+
+      const next = data.deadlines.reduce((a,d)=> d.dueDays < a.dueDays ? d : a, data.deadlines[0]);
+      const due7 = data.deadlines.filter(d => d.dueDays <= 7).length;
+
+      document.getElementById("nextDeadlineChip").textContent = `Next: ${next.task} — ${next.dueDays} days`;
+      document.getElementById("due7Chip").textContent = `Due in 7 days: ${due7}`;
+
+      const s = deadlinesState(data.deadlines);
+      applyChip(document.getElementById("nextDeadlineChip"), s);
+
+      data.deadlines.slice(0,5).forEach(d=>{
+        const row = document.createElement("div");
+        row.style.display = "flex";
+        row.style.alignItems = "flex-start";
+        row.style.justifyContent = "space-between";
+        row.style.gap = "10px";
+        row.style.padding = "10px 10px";
+        row.style.borderRadius = "12px";
+        row.style.border = "1px solid rgba(0,0,0,0.06)";
+        row.style.background = "#fff";
+
+        const left = document.createElement("div");
+        const title = document.createElement("div");
+        title.style.fontWeight = "900";
+        title.style.color = "#222";
+        title.style.fontSize = "13px";
+        title.textContent = `${d.icon} ${d.task}`;
+        const meta = document.createElement("div");
+        meta.style.fontSize = "12px";
+        meta.style.color = "var(--gray)";
+        meta.style.marginTop = "4px";
+        meta.textContent = `${d.scope} • Due ${d.dueDate}`;
+        left.appendChild(title); left.appendChild(meta);
+
+        const right = document.createElement("span");
+        right.className = "chip";
+        const color = d.dueDays < 7 ? "red" : (d.dueDays <= 14 ? "yellow" : "green");
+        applyChip(right, color);
+        right.textContent = `${d.dueDays} days`;
+
+        row.appendChild(left);
+        row.appendChild(right);
+        list.appendChild(row);
+      });
+    }
+
+    // ===== Render KPI 3 (Risk) =====
+    function renderRisk(){
+      const r = data.risk;
+      const s = riskState(r);
+
+      document.getElementById("riskRed").textContent = r.red;
+      document.getElementById("riskYellow").textContent = r.yellow;
+
+      const chip = document.getElementById("riskStateChip");
+      chip.textContent = (s === "red") ? "Urgent: intervene this week" : (s === "yellow" ? "Caution: review roster" : "On track");
+      applyChip(chip, s);
+
+      document.getElementById("sendOHBtn").style.display = (s === "red") ? "inline-flex" : "none";
+
+      const t = document.getElementById("riskTrend");
+      if(r.wowChangeRed > 0){ t.className = "trend up"; t.textContent = `↑ +${r.wowChangeRed} vs last week`; }
+      else if(r.wowChangeRed < 0){ t.className = "trend down"; t.textContent = `↓ ${r.wowChangeRed} vs last week`; }
+      else{ t.className = "trend"; t.textContent = "→ stable vs last week"; }
+
+      const wrap = document.getElementById("riskByCourse");
+      wrap.innerHTML = "";
+      const max = Math.max(...r.byCourse.map(c => c.red + c.yellow)) || 1;
+
+      r.byCourse.forEach(c=>{
+        const row = document.createElement("div");
+        row.className = "course-row";
+
+        const name = document.createElement("div");
+        name.className = "course-name";
+        name.textContent = c.name;
+
+        const stack = document.createElement("div");
+        stack.className = "stack";
+        const redSeg = document.createElement("div");
+        redSeg.className = "seg red";
+        const ySeg = document.createElement("div");
+        ySeg.className = "seg yellow";
+
+        setTimeout(()=>{
+          redSeg.style.width = `${((c.red/max)*100).toFixed(1)}%`;
+          ySeg.style.width = `${((c.yellow/max)*100).toFixed(1)}%`;
+        }, 30);
+
+        stack.appendChild(redSeg);
+        stack.appendChild(ySeg);
+
+        row.appendChild(name);
+        row.appendChild(stack);
+        wrap.appendChild(row);
+      });
+
+      document.getElementById("riskRed").style.color = (s === "red") ? "var(--red)" : (s === "yellow" ? "var(--yellow)" : "var(--green)");
+    }
+
+    // ===== Render KPI 4 (Compliance) =====
+    function renderCompliance(){
+      const c = data.compliance;
+      const s = complianceState(c);
+
+      document.getElementById("compPct").textContent = fmtPct(c.pct);
+      document.getElementById("deadlineDays").textContent = c.daysRemaining;
+      document.getElementById("missingChip").textContent = `${c.mostImpacted.missing} missing`;
+
+      applyChip(document.getElementById("deadlineChip"), s);
+      applyChip(document.getElementById("compStateChip"), s);
+      applyChip(document.getElementById("missingChip"), s);
+
+      document.getElementById("compPct").style.color = (s === "red") ? "var(--red)" : (s === "yellow" ? "var(--yellow)" : "var(--green)");
+    }
+
+    // ===== Render KPI 5 (Timeliness) =====
+    function buildSparkPath(series, width, height, pad=8){
+      const n = series.length;
+      const min = Math.min(...series);
+      const max = Math.max(...series);
+      const range = (max - min) || 1;
+      const step = (width - pad*2) / (n - 1);
+      const pts = series.map((v,i)=>{
+        const x = pad + i*step;
+        const y = pad + (height - pad*2) * (1 - (v - min)/range);
+        return [x,y];
+      });
+      return "M " + pts.map(p => p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" L ");
+    }
+
+    function renderTimeliness(){
+      const v = data.timeliness.current;
+      const s = timelinessState(v);
+
+      document.getElementById("timelinessVal").textContent = fmtPct(v);
+      document.getElementById("timelinessVal").style.color = (s === "red") ? "var(--red)" : (s === "yellow" ? "var(--yellow)" : "var(--green)");
+      applyChip(document.getElementById("timelinessState"), s);
+
+      document.getElementById("downtrendChip").textContent = data.timeliness.downtrend ? "Downtrend" : "Stable";
+      applyChip(document.getElementById("downtrendChip"), data.timeliness.downtrend ? (s === "green" ? "yellow" : s) : "green");
+
+      const path = buildSparkPath(data.timeliness.series, 260, 70, 8);
+      document.getElementById("timelinessPath").setAttribute("d", path);
+
+      document.getElementById("driverLink").style.visibility = (s === "green") ? "hidden" : "visible";
+    }
+
+    // ===== Wire basic interactions (presentation-friendly) =====
+    document.getElementById("refreshBtn").onclick = ()=>{
+      setLastUpdated();
+      const chip = document.getElementById("refreshChip");
+      chip.textContent = "Refreshing…";
+      setTimeout(()=> chip.textContent = "Auto-refresh: every 5 min", 600);
+    };
+    document.getElementById("toggleEmailBtn").onclick = ()=>{
+      const btn = document.getElementById("toggleEmailBtn");
+      btn.textContent = btn.textContent.includes("ON") ? "Email reminders: OFF" : "Email reminders: ON";
+    };
+    document.getElementById("goNextBtn").onclick = ()=> alert("Mock: Open the next deadline task in the new NYU SIS.");
+    document.getElementById("goTaskBtn").onclick = ()=> alert("Mock: Go to next deadline task.");
+    document.getElementById("openQueueBtn").onclick = ()=> alert("Mock: Open Grading Queue drill-down.");
+    document.getElementById("openQueueLink").onclick = ()=> alert("Mock: Open Grading Queue drill-down.");
+    document.getElementById("sortWeightBtn").onclick = ()=> alert("Mock: Apply 'Sort by Highest Weight' in drill-down.");
+    document.getElementById("reviewRosterBtn").onclick = ()=> alert("Mock: Open At-Risk Roster (red-risk filtered).");
+    document.getElementById("sendOHBtn").onclick = ()=> alert("Mock: Send Office Hours Invite to red-risk students.");
+    document.getElementById("enterGradesBtn").onclick = ()=> alert("Mock: Open Final Grade Entry (filtered to missing).");
+    document.getElementById("viewMissingBtn").onclick = ()=> alert("Mock: View Missing/Incompletes roster.");
+    document.getElementById("driverLink").onclick = ()=> alert("Mock: Open timeliness drivers breakdown.");
+
+    // ===== Initialize =====
+    function init(){
+      setLastUpdated();
+      renderHero();
+      renderDeadlines();
+      renderRisk();
+      renderCompliance();
+      renderTimeliness();
+    }
+    init();
+  </script>
+</body>
+</html>
